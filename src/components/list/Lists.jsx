@@ -22,7 +22,7 @@ const Lists = () => {
         setSlideNumber(slideNumber - 1);
         ListRef.current.style.transform = `translateX(${230 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 5) {
+    if (direction === "right" && slideNumber < 4) {
         setSlideNumber(slideNumber + 1);
         ListRef.current.style.transform = `translateX(${-230 + distance}px)`;
         }
