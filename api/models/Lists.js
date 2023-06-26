@@ -13,4 +13,4 @@ const ListSchema = new mongoose.Schema(
     { timestamps :true }
 );
 
-module.export = mongoose.model("List", MovieSchema);
+module.exports = mongoose.model("List", MovieSchema);
