@@ -66,7 +66,22 @@ router.get("/find/:id", async (req, res) => {
 
 })
 //GET ALL
+router.get("/", verify, async (req, res) => {
+    const query = req.query.new;  //For fetching  users By limit
+    if(req.user.isAdmin) {
+        try {
+            const users = query ? await User.find().limit(10) :   // the 10 last users else all users
+            await User.find();
+            res.status(200).json(users);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    } else {
+        res.status(403).json("You are not allowed to see all users! ");
+    }
 
+    
+})
 //GET USER STATS total users per month 
 
 module.exports = router;
