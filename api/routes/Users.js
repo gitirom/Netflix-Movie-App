@@ -37,7 +37,7 @@ router.put("/:id", verify, async (req, res) => {
 
 //DELETE
 router.delete("/:id", verify, async (req, res) => {
-    //Updating the password if there is and crypt it 
+    
     if(req.user.id === req.params.id || req.user.isAdmin) {
         try {
             //find user by id and delete it 
@@ -54,7 +54,17 @@ router.delete("/:id", verify, async (req, res) => {
 })
 
 //GET
+router.get("/find/:id", async (req, res) => {
+        try {
+            
+            const user = await User.findById(req.params.id);
+        const { password, ...info } = user._doc; // should not showing the password when get user
+            res.status(200).json(info);
+        } catch (err) {
+            res.status(500).json(err);
+        }
 
+})
 //GET ALL
 
 //GET USER STATS total users per month 
