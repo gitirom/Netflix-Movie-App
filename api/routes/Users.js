@@ -83,5 +83,43 @@ router.get("/", verify, async (req, res) => {
     
 })
 //GET USER STATS total users per month 
+router.get("/stats", async (req, res) => {
+    const today = new Date();
+    const lastYear = today.setFullYear(today.setFullYear() - 1); // that gives me the last year
+
+    const monthsArray = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+    ];
+
+        try {
+            const data = await User.aggregate([ //cluster out the records in the form of a collection which can be then employed for providing operations like total number (sum), mean, minimum and maximum
+            {
+                $project: {
+                month: { $month: "$createdAt" }, //if you want it per year just replace month with year 
+                },
+            },
+            {
+                $group: {
+                _id: "$month",
+                total: { $sum: 1 },
+                },
+            },
+            ]);
+            res.status(200).json(data)
+        } catch (err) {
+            res.status(500).json(err);
+        }
+});
 
 module.exports = router;
