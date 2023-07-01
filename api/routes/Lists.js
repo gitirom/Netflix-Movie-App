@@ -41,7 +41,30 @@ router.delete("/:id", verify, async (req, res) => {
 });
 //GET
 router.get("/", verify, async (req, res) => {
+    const typeQuery = req.query.type;
+    const genreQuery = req.query.genre;
+    let list = [];
 
+    try {
+        if(typeQuery){
+            if(genreQuery){
+                list = await List.aggregate([
+                    { $sample: { size: 10 } },
+                    { $match: { type: typeQuery, genre: genreQuery } },//return 10 movies with type and genre
+                ]);
+            }else{
+                list = await List.aggregate([
+                    { $sample: { size: 10 } },
+                    { $match: { type: typeQuery } }, //(?type=series)
+                ]);
+            }
+        }else{
+            list = await List.aggregate([{ $sample: {size: 10} }]); //when there is no type selected 
+        }
+        res.status(200).json(list);
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
