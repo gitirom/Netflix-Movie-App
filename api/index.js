@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/Users");
 const movieRoute = require("./routes/Movies");
+const listsRoute = require("./routes/Lists");
 
 const app = express(); 
 
@@ -23,7 +24,8 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("/api/movies", movieRoute);
+app.use("/api/movie", movieRoute);
+app.use("/api/lists", listsRoute);
 
 
 
