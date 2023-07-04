@@ -18,7 +18,7 @@ const Home = ({type}) => {
                     genre ? "&genre=" + genre : ""
                     }`, {
                         headers: {
-                            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWU5ZDY1M2IyNjQzY2M5ZmE1NmI1NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODM3NTk4NywiZXhwIjoxNjg4ODA3OTg3fQ.hLOZXdQ0Ugw1ip0zOsCqK89Z4sG18fuQ3sCSCLqmcwg"
+                            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWU5ZDY1M2IyNjQzY2M5ZmE1NmI1NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODQ2Njc5OCwiZXhwIjoxNjg4ODk4Nzk4fQ.37meXbt0DFeFCKGcNdkInMX6X3kXVK24wP3rub7anrE"
                         }
                     }
                     
