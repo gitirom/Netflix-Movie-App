@@ -87,20 +87,7 @@ router.get("/stats", async (req, res) => {
     const today = new Date();
     const lastYear = today.setFullYear(today.setFullYear() - 1); // that gives me the last year
 
-    const monthsArray = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-    ];
+    
 
         try {
             const data = await User.aggregate([ //cluster out the records in the form of a collection which can be then employed for providing operations like total number (sum), mean, minimum and maximum
