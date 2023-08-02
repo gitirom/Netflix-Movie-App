@@ -15,7 +15,7 @@ const App = () => {
         <Route exact path="/login" element={!user ? <Login/> : <Home />} />
         {user && (
           <>
-          <Route path="/movies" element={<Home type="movies" />} />  {/*Now how can i now if the home page is for movies or series == should pass the type in route compo..*/}
+          <Route path="/movies" element={<Home type="movie" />} />  {/*Now how can i know if the home page is for movies or series == should pass the type in route compo..*/}
           <Route path="/series" element={<Home type="series" />} />
           <Route path="/watch" element={<Watch />} />
           </>
