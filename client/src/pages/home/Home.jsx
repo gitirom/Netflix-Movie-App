@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Home = ({type}) => {
     const [lists, setlists] = useState([]);
-    const [genre, setgenre] = useState(null);
+    const [genre, setGenre] = useState(null);
 
     useEffect(() => {
         const getRandomLists = async () => {
@@ -18,7 +18,8 @@ const Home = ({type}) => {
                     genre ? "&genre=" + genre : ""
                     }`, {
                         headers: {
-                            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWU5ZDY1M2IyNjQzY2M5ZmE1NmI1NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDk2Njg5MSwiZXhwIjoxNjkxMzk4ODkxfQ.93weiSPhxcfp_RK3pT16woKDrcjqQP-HEEh1pTesV2I"
+                            token:
+                            "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
                         }
                     }
                     
@@ -34,7 +35,7 @@ const Home = ({type}) => {
     return (
         <div className='home'>
             <Navbar  />
-            <Featured type={type} />
+            <Featured type={type} setGenre={setGenre} />
             {lists.map((list) => (
                 <Lists list={list} /> //now we get 10 lists in our home page
             ))}

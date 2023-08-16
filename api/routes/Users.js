@@ -6,6 +6,8 @@ const verify = require('./verifyToken');
 
 
 
+
+
 //UPDATE
 router.put("/:id", verify, async (req, res) => {
     //Updating the password if there is and crypt it 

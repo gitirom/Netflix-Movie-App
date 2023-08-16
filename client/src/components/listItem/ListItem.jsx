@@ -10,7 +10,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const ListItem = ({ index, item }) => {
-    const [isHovered, setisHovered] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const [movie, setMovie] = useState({});
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const ListItem = ({ index, item }) => {
             const res = await axios.get("/movie/find/" + item, {
             headers: {
                 token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWU5ZDY1M2IyNjQzY2M5ZmE1NmI1NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDk2Njg5MSwiZXhwIjoxNjkxMzk4ODkxfQ.93weiSPhxcfp_RK3pT16woKDrcjqQP-HEEh1pTesV2I",
+                "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
             },
             });
             setMovie(res.data);
@@ -33,17 +33,16 @@ const ListItem = ({ index, item }) => {
     }, [item]);
 
     return (
-        <Link to={{ pathname: "/watch", movie: movie }} >
+            <Link to={{ pathname: "/watch", movie: movie }}>
         <div
             className="listItem"
             style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-            onMouseEnter={() => setisHovered(true)}
-            onMouseLeave={() => setisHovered(false)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
             <img src={movie?.imgSm} alt="" />
             {isHovered && (
             <>
-                <video src={movie.trailer} autoPlay={true} loop />
                 <div className="itemInfo">
                 <div className="icons">
                     <PlayArrow className="icon" />

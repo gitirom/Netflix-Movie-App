@@ -2,10 +2,14 @@ import { useState } from "react";
 import { ArrowDropDown, NotificationsNone, Search } from "@material-ui/icons";
 import "./navbar.scss" ;
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../authContext/AuthContext";
+import { logout } from "../../authContext/AuthAction";
 
 
 const Navbar = () => {
-    const [isScroled, setisScroled] = useState(false);                                 // these state for changing the style of the navbar when you scrollDown take an other style then the first style
+    const [isScroled, setisScroled] = useState(false);     
+    const { dispatch } = useContext(AuthContext)                            // these state for changing the style of the navbar when you scrollDown take an other style then the first style
 
     window.onscroll = () => {
         setisScroled(window.pageYOffset === 0 ? false : true);
@@ -43,7 +47,7 @@ const Navbar = () => {
                 <ArrowDropDown className="icon" />
                 <div className="options">
                     <span>Profile</span>
-                    <span>Settings</span>
+                    <span onClick={() => dispatch(logout())} >Logout</span>
                 </div>
                 </div>
                 
