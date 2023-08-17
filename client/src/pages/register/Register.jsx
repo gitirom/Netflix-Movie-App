@@ -21,18 +21,21 @@ export default function Register() {
 
     const handleStart = () => {
         setEmail(emailRef.current.value);
+        
     };
     const handleFinish = async (e) => {
         e.preventDefault();
         setPassword(passwordRef.current.value);
         setUsername(usernameRef.current.value);
-        try {
-            await axios.post("auth/register", { email,username, password });
-            navigate("/login");
-            toast.success("User Register Success");
-        } catch (err) {
-            console.log(err);
-        }
+        
+            try {
+                await axios.post("auth/register", { email,username, password });
+                navigate("/login");
+                toast.success("User Register Success");
+            } catch (err) {
+                toast.error("User Register Field !");
+            }
+        
 
     };
     return (
@@ -56,15 +59,15 @@ export default function Register() {
             </p>
             {!email ? ( // if not email show email input if email show password input
             <div className="input">
-                <input type="email" placeholder="email address" ref={emailRef} />    
+                <input type="email" placeholder="email address"   ref={emailRef} />    
                 <button className="registerButton" onClick={handleStart}>
                 Get Started
                 </button>
             </div>
             ) : (
             <form className="input">
-                <input type="username" placeholder="username" ref={usernameRef} />
-                <input type="password" placeholder="password" ref={passwordRef} />
+                <input type="username" placeholder="username"  ref={usernameRef} />
+                <input type="password" placeholder="password"  ref={passwordRef} />
                 <button className="registerButton" onClick={handleFinish}>
                 Start
                 </button>

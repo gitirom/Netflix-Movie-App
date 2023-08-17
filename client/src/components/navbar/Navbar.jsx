@@ -4,18 +4,28 @@ import "./navbar.scss" ;
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../authContext/AuthContext";
-import { logout } from "../../authContext/AuthAction";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Navbar = () => {
     const [isScroled, setisScroled] = useState(false);     
-    const { dispatch } = useContext(AuthContext)                            // these state for changing the style of the navbar when you scrollDown take an other style then the first style
+    const { dispatch } = useContext(AuthContext) ;                           // these state for changing the style of the navbar when you scrollDown take an other style then the first style
+
 
     window.onscroll = () => {
         setisScroled(window.pageYOffset === 0 ? false : true);
         return () => (window.onscroll = null);
     };
-    console.log(isScroled);
+
+    const logout = () => {
+        localStorage.removeItem("user");
+        if (logout) {
+            window.location.replace('http://localhost:3000/login');
+            toast.success("Logout Success");
+        }
+    }
     return (
         <div className={isScroled ? "navbar scrolled" : "navbar"} >
             <div className="container">
@@ -47,7 +57,7 @@ const Navbar = () => {
                 <ArrowDropDown className="icon" />
                 <div className="options">
                     <span>Profile</span>
-                    <span onClick={() => dispatch(logout())} >Logout</span>
+                    <span onClick={() => dispatch(logout()) } >Logout</span>
                 </div>
                 </div>
                 

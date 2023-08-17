@@ -3,9 +3,8 @@ import { useContext, useState } from "react";
 import { login } from "../../authContext/apiCalls";
 import "./Login.scss";
 import { AuthContext } from "../../authContext/AuthContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 
 export default function Login() {
@@ -13,12 +12,11 @@ export default function Login() {
     const [password, setPassword] = useState();
     const {dispatch} = useContext(AuthContext);
 
-    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         login({ email, password }, dispatch);
-        toast.success("User Login Success");
+        
     }
 
     
