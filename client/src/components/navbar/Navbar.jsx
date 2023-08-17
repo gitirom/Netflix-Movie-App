@@ -26,10 +26,10 @@ const Navbar = () => {
                     <span>Homepage</span>
                     </Link>
                     <Link to="/series" className="link">  {/*this className style to avoid the bad style after links get clicked */}
-                        <span>Series</span>
+                        <span className="navbarMainLinks" >Series</span>
                     </Link>
                     <Link to="/movies" className="link">
-                        <span>Movies</span>
+                        <span className="navbarMainLinks" >Movies</span>
                     </Link>
                     
                     <span>New and Popular</span>

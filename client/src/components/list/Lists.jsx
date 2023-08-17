@@ -9,7 +9,7 @@ import {
 
 const Lists = ({list}) => {
     const [isMoved, setisMoved] = useState(false);                 //these state for appear and disappear the left icon 
-    
+    const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);  //app width div item width
     const [slideNumber, setSlideNumber] = useState(0);
 
     const ListRef = useRef();                         //Like getElementById but with jsx
@@ -22,7 +22,7 @@ const Lists = ({list}) => {
         setSlideNumber(slideNumber - 1);
         ListRef.current.style.transform = `translateX(${230 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 4) {
+    if (direction === "right" && slideNumber < 10 - clickLimit) {
         setSlideNumber(slideNumber + 1);
         ListRef.current.style.transform = `translateX(${-230 + distance}px)`;
         }
